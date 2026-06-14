@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>نصائح - Alfaclass</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:          #f8f7ff;
+    --white:       #ffffff;
+    --blue:        #4a90d9;
+    --purple:      #7c6fd4;
+    --purple-light:#ede9ff;
+    --purple-pale: #f5f3ff;
+    --purple-pale2:#f0edff;
+    --text-dark:   #1e1b3a;
+    --text-mid:    #6b6890;
+    --text-light:  #9896b8;
+    --border:      rgba(124,111,212,0.15);
+    --shadow:      0 4px 24px rgba(124,111,212,0.10);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    direction: rtl;
+    overflow-x: hidden;
+    color: var(--text-dark);
+    opacity: 0;
+    animation: pageFadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+  body.page-exit { animation: pageFadeOut 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+  @keyframes pageFadeIn {
+    from { opacity: 0; transform: scale(0.98) translateY(15px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  @keyframes pageFadeOut {
+    from { opacity: 1; transform: scale(1) translateY(0); }
+    to   { opacity: 0; transform: scale(0.98) translateY(-15px); }
+  }
+
+  /* ══════════════════════════════
+     NAV
+  ══════════════════════════════ */
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 40px; background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 200;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .logo-wrap { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+  .logo-icon {
+    width: 42px; height: 42px; background: transparent;
+    border-radius: 10px; display: flex; align-items: center; justify-content: center; position: relative;
+  }
+  .logo-pulse {
+    position: absolute; inset: -4px; border-radius: 14px;
+    border: 2px solid var(--purple); opacity: 0;
+    animation: pulse-ring 2.5s ease-out infinite;
+  }
+  @keyframes pulse-ring { 0% { transform: scale(0.9); opacity: 0.8; } 100% { transform: scale(1.3); opacity: 0; } }
+  .logo-text { display: flex; flex-direction: column; }
+  .logo-title { font-size: 18px; font-weight: 700; color: var(--text-dark); }
+  .logo-sub   { font-size: 11px; color: var(--text-light); }
+
+  .nav-links { display: flex; gap: 6px; }
+  .nav-link {
+    padding: 7px 16px; border-radius: 8px; font-size: 14px; color: var(--text-mid);
+    cursor: pointer; transition: all 0.2s; border: 1px solid transparent; background: none; font-family: inherit;
+  }
+  .nav-link:hover  { color: var(--purple); background: var(--purple-pale); }
+  .nav-link.active { color: var(--purple); background: var(--purple-light); border-color: var(--border); font-weight: 600; }
+
+  /* ══════════════════════════════
+     TIPS SECTION (VIDEO)
+  ══════════════════════════════ */
+  #section-tips {
+    padding: 60px 20px 80px; min-height: calc(100vh - 130px);
+    background: linear-gradient(to bottom, var(--white), var(--bg));
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .tips-header { text-align: center; margin-bottom: 40px; animation: fade-up 0.8s ease both; }
+  .tips-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--purple-pale2); color: var(--purple);
+    border-radius: 100px; padding: 6px 18px; font-size: 13px; font-weight: 700; margin-bottom: 18px; border: 1px solid var(--border);
+  }
+  .tips-header h2 { font-size: clamp(26px, 5vw, 40px); font-weight: 800; color: var(--text-dark); margin-bottom: 12px; }
+  .tips-header h2 span { background: linear-gradient(120deg, var(--purple), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .tips-header p { font-size: 16px; color: var(--text-mid); max-width: 500px; margin: 0 auto; line-height: 1.7; }
+
+  /* Video Wrapper Styling */
+  .video-card {
+    width: 100%; max-width: 780px;
+    background: var(--white); border-radius: 24px;
+    padding: 16px; box-shadow: var(--shadow); border: 1px solid var(--border);
+    animation: fade-up 0.8s cubic-bezier(0.4,0,0.2,1) 0.2s both;
+  }
+  .video-inner {
+    border-radius: 16px; overflow: hidden; position: relative;
+    background: #000; display: flex; align-items: center; justify-content: center;
+  }
+  .video-inner video { width: 100%; height: auto; display: block; border-radius: 16px; outline: none; }
+
+  /* Custom Play Button */
+  .custom-play-btn {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 70px; height: 70px; background: rgba(124, 111, 212, 0.85); color: var(--white);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 28px; cursor: pointer; z-index: 10;
+    transition: opacity 0.3s, transform 0.3s; box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  }
+  .custom-play-btn i { margin-left: 6px; /* Centering the play triangle */ }
+  .custom-play-btn:hover { transform: translate(-50%, -50%) scale(1.1); background: var(--purple); }
+  .video-inner.is-playing .custom-play-btn { opacity: 0; transform: translate(-50%, -50%) scale(1.5); pointer-events: none; }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ══════════════════════════════
+     FOOTER
+  ══════════════════════════════ */
+  footer { text-align: center; padding: 18px; font-size: 13px; color: var(--text-light); border-top: 1px solid var(--border); background: var(--white); }
+
+  #scrollTop {
+    position: fixed; bottom: 28px; left: 28px; width: 44px; height: 44px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--purple), var(--blue)); color: white; border: none; cursor: pointer; font-size: 16px;
+    display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(124,111,212,0.35);
+    opacity: 0; transform: translateY(10px); transition: opacity 0.3s, transform 0.3s; z-index: 300;
+  }
+  #scrollTop.show { opacity: 1; transform: translateY(0); }
+  #scrollTop:hover { transform: translateY(-2px) scale(1.05); }
+
+  /* ══════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════ */
+  @media (max-width: 600px) {
+    nav { flex-direction: column; padding: 16px; gap: 14px; }
+    .logo-wrap { width: 100%; justify-content: center; }
+    .logo-icon { width: 36px; height: 36px; font-size: 16px; }
+    .nav-links { width: 100%; background: var(--purple-pale2); padding: 5px; border-radius: 12px; gap: 2px; }
+    .nav-link { flex: 1; padding: 8px 2px; font-size: 13px; text-align: center; border-radius: 8px; }
+    .nav-link.active { background: var(--white); box-shadow: 0 2px 8px rgba(124,111,212,0.12); border-color: transparent; }
+    .video-card { padding: 10px; border-radius: 16px; }
+    .video-inner, .video-inner video { border-radius: 10px; }
+    #scrollTop { bottom: 16px; left: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="logo-wrap" onclick="navigateWithTransition('index.html')">
+    <div class="logo-icon">
+      <div class="logo-pulse"></div>
+      <img src="صور/A.png" alt="شعار" style="width: 100%; height: 100%; border-radius: inherit; object-fit: cover;">
+    </div>
+    <div class="logo-text">
+      <span class="logo-title">كـوزاتـنا </span>
+      <span class="logo-sub">إحدى خدمات Alfaclass</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <button class="nav-link" onclick="navigateWithTransition('index.html')">الصفحة الرئيسية</button>
+    <button class="nav-link active" onclick="scrollToTop()">نصائح</button>
+    <button class="nav-link" onclick="navigateWithTransition('faq.html')">الأسئلة الشائعة</button>
+  </div>
+</nav>
+
+<!-- ══ TIPS ══ -->
+<section id="section-tips">
+  <div class="tips-header">
+    <div class="tips-eyebrow"><i class="fa-solid fa-lightbulb"></i> إرشادات هامة</div>
+    <h2>أهم <span>النصائح</span> لك</h2>
+    <p>شاهد هذا المقطع للتعرف على أفضل الإرشادات التي ستساعدك في دراستك.</p>
+  </div>
+
+  <div class="video-card">
+    <div class="video-inner" id="videoWrapper">
+      <video id="tipsVideo" src="صور/نصائح.mp4" poster="صور/صورة نصيحة.jpg" controls loop playsinline preload="metadata">
+        متصفحك لا يدعم تشغيل مقاطع الفيديو.
+      </video>
+      <div class="custom-play-btn" id="playBtn">
+        <i class="fa-solid fa-play"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>شكراً لصبركم. ترقبونا! &nbsp;·&nbsp; Alfaclass © 2025</footer>
+<button id="scrollTop" title="العودة للأعلى" onclick="scrollToTop()"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script>
+document.addEventListener('touchmove', function (e) { if (e.scale !== 1) { e.preventDefault(); } }, { passive: false });
+function navigateWithTransition(url) { document.body.classList.add('page-exit'); setTimeout(() => { window.location.href = url; }, 400); }
+function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+window.addEventListener('scroll', () => { document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 300); });
+
+/* ── Video Custom Play Button Logic ── */
+const video = document.getElementById('tipsVideo');
+const playBtn = document.getElementById('playBtn');
+const videoWrapper = document.getElementById('videoWrapper');
+playBtn.addEventListener('click', () => { if (video.paused) video.play(); else video.pause(); });
+video.addEventListener('play', () => videoWrapper.classList.add('is-playing'));
+video.addEventListener('pause', () => videoWrapper.classList.remove('is-playing'));
+</script>
+</body>
+</html>
