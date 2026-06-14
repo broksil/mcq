@@ -187,7 +187,7 @@
 
   <div class="video-card">
     <div class="video-inner" id="videoWrapper">
-      <video id="tipsVideo" src="صور/نصائح.mp4" poster="صور/صورة نصيحة.jpg" controls loop playsinline preload="metadata">
+      <video id="tipsVideo" src="صور/نصائح.mp4" poster="صور/صورة نصيحة.jpg" controls loop playsinline preload="none">
         متصفحك لا يدعم تشغيل مقاطع الفيديو.
       </video>
       <div class="custom-play-btn" id="playBtn">
@@ -201,7 +201,6 @@
 <button id="scrollTop" title="العودة للأعلى" onclick="scrollToTop()"><i class="fa-solid fa-arrow-up"></i></button>
 
 <script>
-document.addEventListener('touchmove', function (e) { if (e.scale !== 1) { e.preventDefault(); } }, { passive: false });
 function navigateWithTransition(url) { document.body.classList.add('page-exit'); setTimeout(() => { window.location.href = url; }, 400); }
 function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 window.addEventListener('scroll', () => { document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 300); });

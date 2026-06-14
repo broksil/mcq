@@ -339,11 +339,6 @@
 </button>
 
 <script>
-/* ── Prevent iOS Pinch-to-zoom ── */
-document.addEventListener('touchmove', function (event) {
-  if (event.scale !== 1) { event.preventDefault(); }
-}, { passive: false });
-
 /* ── Page Transition Logic ── */
 function navigateWithTransition(url) {
   document.body.classList.add('page-exit');
